@@ -48,14 +48,14 @@ int main()
             cin >> x >> y >> type >> owner >> organ_id >> organ_dir >> organ_parent_id >> organ_root_id; cin.ignore();
             a = {x,y,type,owner,organ_id,organ_dir,organ_parent_id,organ_root_id};
             thing.push_back(a);
-               cerr << myid<< endl; 
+               
             if(owner == 1 && organ_id>myid){
             myid= organ_id;
             myx = x;
             myy =y;
             
             }
-            cerr << "00"<<myid<< endl;
+           
         }
                  
 
@@ -88,25 +88,35 @@ int main()
             else if ((ax == myx+1 && ay == myy+1)||(ax == myx+1 && ay == myy-1)||(ax == myx+2&& ay == myy))
             {
                 if ((ax == myx+1 && ay == myy+1))
-                cout << "GROW 1 "<<myx+1<<" "<<myy<<" HARVESTER N" << endl;
-            else if ()
+                    cout << "GROW "<< myid << " "<<myx+1<<" "<<myy<<" HARVESTER S" << endl;
+                else if ((ax == myx+1 && ay == myy-1))
+                    cout << "GROW "<< myid << " "<<myx+1<<" "<<myy<<" HARVESTER N" << endl;
+                else if ((ax == myx+2&& ay == myy))
+                    cout << "GROW "<< myid << " "<<myx+1<<" "<<myy<<" HARVESTER E" << endl;
 
             }
 
             else if ((ax == myx-1 && ay == myy+1)||(ax == myx-1 && ay == myy-1)||(ax == myx-2 && ay == myy))
             {
+                if ((ax == myx-1 && ay == myy+1))
+                    cout << "GROW "<< myid << " "<<myx-1<<" "<<myy<<" HARVESTER S" << endl;
+                else if ((ax == myx-1 && ay == myy-1))
+                    cout << "GROW "<< myid << " "<<myx-1<<" "<<myy<<" HARVESTER N" << endl;
+                else if ((ax == myx-2 && ay == myy))
+                    cout << "GROW "<< myid << " "<<myx-1<<" "<<myy<<" HARVESTER W" << endl;
+
 
             }
 
             else if ((ax == myx && ay == myy-2))
-            {
-
-            }
+                cout << "GROW "<< myid << " "<<myx<<" "<<myy-1<<" HARVESTER N" << endl;
             
             else if((ax == myx && ay == myy+2))
-            {
+                cout << "GROW "<< myid << " "<<myx<<" "<<myy+1<<" HARVESTER S" << endl;
 
-            }
+            else
+            cout << "GROW "<< myid << " "<<ax<<" "<<ay<<" BASIC" << endl;
+
 
               
         
