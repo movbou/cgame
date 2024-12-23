@@ -25,14 +25,16 @@ int main()
     int width; // columns in the game grid
     int height; // rows in the game grid
     cin >> width >> height; cin.ignore();
-
+    int flag = 0;
     // game loop
     while (1) {
         int entity_count;
         cin >> entity_count; cin.ignore();
         Entity a;
-        int myx,myy,ax,ay;
+        int myx,myy,ax,ay,xr,yr,rid;
+        
         int myid = 0;
+        string mytype;
         double dist = 1000;
         
         vector<Entity> thing;
@@ -53,7 +55,12 @@ int main()
             myid= organ_id;
             myx = x;
             myy =y;
-            
+            mytype = type;
+            }
+            if(owner == 1 && type == "ROOT"){
+                rid = organ_id;
+                xr = x;
+                yr = y;
             }
            
         }
@@ -82,7 +89,8 @@ int main()
         int required_actions_count; // your number of organisms, output an action for each one in any order
         cin >> required_actions_count; cin.ignore();
         for (int i = 0; i < required_actions_count; i++) {
-            if((ax == myx+1 && ay == myy)|| (ax == myx - 1 && ay == myy) || (ax == myx && ay == myy+1) || (ax == myx && ay == myy-1))
+        if ((mytype != "HARVESTER") && flag ==0){
+            if(((ax == myx+1 && ay == myy)|| (ax == myx - 1 && ay == myy) || (ax == myx && ay == myy+1) || (ax == myx && ay == myy-1)))
              cout << "GROW "<< myid << " "<<ax<<" "<<ay<<" BASIC" << endl;
 
             else if ((ax == myx+1 && ay == myy+1)||(ax == myx+1 && ay == myy-1)||(ax == myx+2&& ay == myy))
@@ -93,6 +101,7 @@ int main()
                     cout << "GROW "<< myid << " "<<myx+1<<" "<<myy<<" HARVESTER N" << endl;
                 else if ((ax == myx+2&& ay == myy))
                     cout << "GROW "<< myid << " "<<myx+1<<" "<<myy<<" HARVESTER E" << endl;
+                flag = 1;
 
             }
 
@@ -104,53 +113,33 @@ int main()
                     cout << "GROW "<< myid << " "<<myx-1<<" "<<myy<<" HARVESTER N" << endl;
                 else if ((ax == myx-2 && ay == myy))
                     cout << "GROW "<< myid << " "<<myx-1<<" "<<myy<<" HARVESTER W" << endl;
-
+                flag = 1; 
 
             }
 
-            else if ((ax == myx && ay == myy-2))
+            else if ((ax == myx && ay == myy-2)){
                 cout << "GROW "<< myid << " "<<myx<<" "<<myy-1<<" HARVESTER N" << endl;
-            
-            else if((ax == myx && ay == myy+2))
+                flag = 1;
+            }
+            else if((ax == myx && ay == myy+2)){
                 cout << "GROW "<< myid << " "<<myx<<" "<<myy+1<<" HARVESTER S" << endl;
-
+                flag = 1;
+            }
             else
-            cout << "GROW "<< myid << " "<<ax<<" "<<ay<<" BASIC" << endl;
-
-
+                cout << "GROW "<< myid << " "<<ax<<" "<<ay<<" BASIC" << endl;
+            }
+        else
+            {
+                if(xr<width/2)
+                cout << "GROW "<< rid  << " "<<width -1<<" "<<height-1<<" BASIC" << endl;
+                else
+                cout << "GROW "<< rid  << " 0 0 BASIC" << endl;
+            }
+            
+ 
               
         
 
         }
     }
 } 
-
-
-
-
-
-        // if(myx < 11)
-        // 
-        // else if (myx == 11 && myy<5)
-        // cout << "GROW "<< myid << " "<<"11"<<" "<<myy+1<<" BASIC" << endl;
-        // else if (myx > 1 && myy==5)
-        // cout << "GROW "<< myid << " "<<"1"<<" "<<"5"<<" BASIC" << endl;
-
-
-           // Write an action using cout. DON'T FORGET THE "<< endl"
-            // To debug: cerr << "Debug messages..." << endl;
-        //    if( ay == 2 && myx < ax-2)
-        //         cout << "GROW 1 "<<"16"<<" "<<"2"<<" BASIC" << endl;
-        //    else if( ay != 2 && myx < ax-1)
-        //         cout << "GROW 1 "<<"16"<<" "<<"2"<<" BASIC" << endl;
-        //     if(ay==2 && myx == ax-2)
-        //         cout << "GROW 1 "<<"16"<<" "<<"2"<<" HARVESTER E" << endl;
-        //     else if(ay < 2 && myx == ax-1)
-        //         cout << "GROW 1 "<<"16"<<" "<<"2"<<" HARVESTER N" << endl;
-        //     else if(ay > 2 && myx == ax-1)
-        //         cout << "GROW 1 "<<"16"<<" "<<"2"<<" HARVESTER S" << endl;
-        //     else if(myx >= ax )
-        //     {
-        //      
-        //     } 
-            
