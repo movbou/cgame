@@ -19,6 +19,18 @@ struct Entity {
 double calculateDistance(double x1, double y1, double x2, double y2) {
     return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
 }
+int isenemy(vector <Entity> thing, int owner, int x , int y , int count){
+    int flag = 0;
+    for(int i = 0; i<count;i++){
+        if (thing[i].owner == owner && thing[i].x == x && thing[i].y== y){
+            flag =1;
+        }
+    }
+   return flag;
+}
+
+
+
 
 int main()
 {
@@ -124,13 +136,20 @@ int main()
             else if((ax == myx && ay == myy+2)){
                 cout << "GROW "<< myid << " "<<myx<<" "<<myy+1<<" HARVESTER S" << endl;
                 flag = 1;
+            
             }
             else
                 cout << "GROW "<< myid << " "<<ax<<" "<<ay<<" BASIC" << endl;
             }
+        
         else
             {
-                if(xr<width/2)
+                if(isenemy(thing,0,myx+2,myy,entity_count))
+                {
+                    cerr<<"is in"<<endl;
+                    cout << "GROW "<< myid  << " "<<myx+1<<" "<<myy<<" TENTACLE E" << endl;
+                }
+                else if(xr<width/2)
                 cout << "GROW "<< rid  << " "<<width -1<<" "<<height-1<<" BASIC" << endl;
                 else
                 cout << "GROW "<< rid  << " 0 0 BASIC" << endl;
