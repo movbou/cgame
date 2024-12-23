@@ -197,7 +197,6 @@ int main()
                     cerr<<"is in"<<endl;
                     cout << "GROW "<< myid  << " "<<myx<<" "<<myy-1<<" TENTACLE E" << endl;
                 }
-                else if()
                 
 
 
@@ -216,4 +215,4 @@ int main()
 
         }
     }
-}
+} 
