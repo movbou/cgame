@@ -43,7 +43,7 @@ int main()
         int entity_count;
         cin >> entity_count; cin.ignore();
         Entity a;
-        int myx,myy,ax,ay,xr,yr,rid;
+        int myx,myy,ax,ay,xr,yr,rid,xer,yer;
         
         int myid = 0;
         string mytype;
@@ -73,6 +73,10 @@ int main()
                 rid = organ_id;
                 xr = x;
                 yr = y;
+            }
+            if(type == "ROOT" && owner == 0){
+                xer = x;
+                yer =y;
             }
            
         }
@@ -149,8 +153,59 @@ int main()
                     cerr<<"is in"<<endl;
                     cout << "GROW "<< myid  << " "<<myx+1<<" "<<myy<<" TENTACLE E" << endl;
                 }
+                else if(isenemy(thing,0,myx,myy +2,entity_count))
+                {
+                    cerr<<"is in"<<endl;
+                    cout << "GROW "<< myid  << " "<<myx<<" "<<myy+1<<" TENTACLE S" << endl;
+                }
+                else if(isenemy(thing,0,myx-2,myy,entity_count))
+                {
+                    cerr<<"is in"<<endl;
+                    cout << "GROW "<< myid  << " "<<myx-1<<" "<<myy<<" TENTACLE W" << endl;
+                }
+                else if(isenemy(thing,0,myx,myy -2,entity_count))
+                {
+                    cerr<<"is in"<<endl;
+                    cout << "GROW "<< myid  << " "<<myx<<" "<<myy-1<<" TENTACLE N" << endl;
+                }
+
+
+
+
+
+
+                else if(isenemy(thing,0,myx+1,myy+1,entity_count))
+                {
+                    cerr<<"is in"<<endl;
+                    cout << "GROW "<< myid  << " "<<myx<<" "<<myy+1<<" TENTACLE E" << endl;
+                }
+
+                else if(isenemy(thing,0,myx-1,myy -1,entity_count))
+                {
+                    cerr<<"is in"<<endl;
+                    cout << "GROW "<< myid  << " "<<myx<<" "<<myy-1<<" TENTACLE W" << endl;
+                }
+
+                else if(isenemy(thing,0,myx-1,myy+1,entity_count))
+                {
+                    cerr<<"is in"<<endl;
+                    cout << "GROW "<< myid  << " "<<myx<<" "<<myy+1<<" TENTACLE W" << endl;
+                }
+
+                else if(isenemy(thing,0,myx+1,myy -1,entity_count))
+                {
+                    cerr<<"is in"<<endl;
+                    cout << "GROW "<< myid  << " "<<myx<<" "<<myy-1<<" TENTACLE E" << endl;
+                }
+                else if()
+                
+
+
+
+
+                
                 else if(xr<width/2)
-                cout << "GROW "<< rid  << " "<<width -1<<" "<<height-1<<" BASIC" << endl;
+                cout << "GROW "<< rid  << " "<<xer<<" "<<yer<<" BASIC" << endl;
                 else
                 cout << "GROW "<< rid  << " 0 0 BASIC" << endl;
             }
